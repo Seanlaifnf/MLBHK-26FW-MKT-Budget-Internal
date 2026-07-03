@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLB HK · 26FW Marketing Budget Plan</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:#edf1f7;color:#1a1a2e;font-size:15px;line-height:1.55}
+
+/* ─── HEADER ─────────────────────────────── */
+.hdr{background:linear-gradient(135deg,#0d1b2a 0%,#1b2f58 70%,#0f3460 100%);color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-title{font-size:21px;font-weight:900;letter-spacing:3px;margin-bottom:3px}
+.hdr-sub{font-size:12px;opacity:.55;letter-spacing:1.5px}
+.hdr-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo{font-size:28px;font-weight:900;letter-spacing:4px}
+.logo span{color:#e94560}
+.tbc{background:#e94560;color:#fff;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.cur-tabs{display:flex;border:1.5px solid rgba(255,255,255,.35);border-radius:7px;overflow:hidden}
+.cur-tab{padding:7px 16px;font-size:13px;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;border:none;background:transparent;transition:.15s}
+.cur-tab.on{background:rgba(255,255,255,.2);color:#fff}
+.cur-tab:hover:not(.on){color:#fff}
+.dl-btn{background:linear-gradient(135deg,#16a085,#1abc9c);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:.15s}
+.dl-btn:hover{opacity:.85;transform:translateY(-1px)}
+
+/* ─── WRAP / SECTION ─────────────────────── */
+.wrap{max-width:1540px;margin:0 auto;padding:20px 22px}
+.sec{background:#fff;border-radius:12px;padding:26px 28px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.sec-title{font-size:16px;font-weight:800;color:#0d1b2a;border-bottom:3px solid #e94560;padding-bottom:10px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.sec-num{width:28px;height:28px;background:#0d1b2a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+
+/* ─── INPUTS ─────────────────────────────── */
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+.ibox{border:2px solid #dce3ef;border-radius:10px;padding:16px 20px;background:#f8faff;transition:.15s}
+.ibox.hi{border-color:#e94560;background:#fff8f8}
+.ibox-lbl{font-size:12px;font-weight:700;color:#6b7a99;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.ibox-val{font-size:24px;font-weight:900;color:#0d1b2a;border:none;background:transparent;outline:none;width:100%}
+.ibox-val.red{color:#e94560}
+.ibox-hint{font-size:11px;color:#aaa;margin-top:3px}
+.rslider-row{display:flex;align-items:center;gap:10px;margin-top:6px}
+input[type=range]{flex:1;accent-color:#e94560;height:5px}
+
+/* ─── KPI GRID ───────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.kpi{border-radius:10px;padding:18px 16px;color:#fff;text-align:center}
+.kpi .kl{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px}
+.kpi .kv{font-size:21px;font-weight:900;margin-bottom:3px;line-height:1.2}
+.kpi .ks{font-size:11px;opacity:.6}
+.k-navy{background:linear-gradient(135deg,#0d1b2a,#1b3565)}
+.k-green{background:linear-gradient(135deg,#1a5c35,#27ae60)}
+.k-teal{background:linear-gradient(135deg,#0e6655,#1abc9c)}
+.k-gold{background:linear-gradient(135deg,#b7770d,#f5a623)}
+.k-red{background:linear-gradient(135deg,#c0392b,#e94560)}
+.k-purple{background:linear-gradient(135deg,#6c3483,#9b59b6)}
+.k-blue{background:linear-gradient(135deg,#1a5276,#2e86c1)}
+.k-dark{background:linear-gradient(135deg,#2c3e50,#446180)}
+
+/* ─── AIRSIDE SPOTLIGHT ──────────────────── */
+.airside-box{border:2px solid #f5a623;border-radius:10px;background:linear-gradient(135deg,#fffbf0,#fff9e8);padding:18px 22px;margin-bottom:22px}
+.airside-box h3{font-size:14px;font-weight:800;color:#7a4200;margin-bottom:10px}
+.airside-main{display:flex;align-items:flex-start;gap:28px;flex-wrap:wrap}
+.airside-val{flex:0 0 auto}
+.airside-amt{font-size:32px;font-weight:900;color:#e67e22;line-height:1}
+.airside-sub{font-size:12px;color:#a05000;margin-top:4px}
+.airside-tbl{flex:1;min-width:260px}
+.airside-tbl table{width:100%;font-size:13px}
+.airside-tbl th{background:#e67e22;color:#fff;padding:7px 10px;font-size:12px;font-weight:700;text-align:center}
+.airside-tbl td{padding:6px 10px;text-align:center;border-bottom:1px solid #fde8b5;font-size:13px}
+.airside-tbl tr:nth-child(even) td{background:#fff9ee}
+.airside-tbl .cur-row td{background:#fff3cd;font-weight:700;color:#7a4200}
+.airside-note{font-size:11px;color:#a05000;margin-top:8px;font-style:italic}
+
+/* ─── CHARTS ─────────────────────────────── */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.chart-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:18px}
+.chart-box{border:1.5px solid #e8ecf4;border-radius:10px;padding:16px 14px}
+.chart-box .ct{font-size:14px;font-weight:700;color:#0d1b2a;text-align:center;margin-bottom:12px}
+
+/* ─── TABLE ──────────────────────────────── */
+.tbl-wrap{overflow-x:auto}
+table.data-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+table.data-tbl th{padding:11px 10px;text-align:center;font-size:12.5px;font-weight:700;white-space:nowrap;border-bottom:2px solid #fff}
+table.data-tbl td{padding:10px 12px;text-align:right;vertical-align:middle;border-bottom:1px solid #eef0f5}
+table.data-tbl td.left{text-align:left}
+table.data-tbl td.center{text-align:center}
+.th-dark{background:#0d1b2a;color:#fff}
+.th-mid{background:#1b3565;color:#fff}
+.th-25{background:#2c4a6e;color:#fff}
+.th-26{background:#1b5e20;color:#fff;border-left:3px solid #fff}
+.row-cat td{background:#dce5f5;color:#0d1b2a;font-weight:800;font-size:13px;border-top:2px solid #b8c8e8}
+.row-fixed td{background:#eef6ff;color:#1a3a6b}
+.row-var td{background:#fff;color:#1a1a2e}
+.row-var:nth-child(even) td{background:#f7f9fc}
+.row-rem td{background:#fff8ee;color:#7a4000}
+.row-sub td{background:#f0f4f9;color:#2c4066;font-weight:700;border-top:1px solid #ccd5e8}
+.row-grand td{background:#0d1b2a;color:#fff;font-weight:800;font-size:14.5px}
+.row-grand .gv{color:#f5a623}
+.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-left:5px;vertical-align:middle;letter-spacing:.4px}
+.b-fixed{background:#1a5276;color:#fff}
+.b-rem{background:#e67e22;color:#fff}
+.b-var{background:#27ae60;color:#fff}
+.chart-box.plan26{border:2px solid #27ae60}
+.chart-box.plan26 .ct{color:#145a32}
+.tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:12px;font-weight:700}
+.up{background:#d5f5e3;color:#145a32}.dn{background:#fde8e8;color:#78281f}.neu{background:#d6eaf8;color:#1a5276}
+
+/* ─── MONTHLY ────────────────────────────── */
+.m-adj{background:#f4f7fb;border-radius:10px;padding:16px 20px;margin-bottom:16px}
+.m-adj h3{font-size:14px;font-weight:800;color:#0d1b2a;margin-bottom:12px}
+.m-sliders{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.m-grp{display:flex;flex-direction:column;gap:4px}
+.m-grp label{font-size:11px;font-weight:800;color:#555;text-transform:uppercase}
+.m-grp input[type=number]{padding:6px 8px;border:1.5px solid #cdd4e0;border-radius:6px;font-size:14px;font-weight:700;text-align:center;width:100%;color:#0d1b2a}
+.m-grp .mamt{font-size:11px;color:#1a5276;font-weight:700}
+.tchk{text-align:right;font-size:13px;font-weight:800;margin-top:8px;color:#27ae60}
+.tchk.err{color:#e94560}
+
+/* Monthly strategy table cells */
+.tbl-retail td{background:#fff9e6;color:#7a5200;font-size:12.5px;font-weight:600;text-align:center;padding:8px 6px;line-height:1.4;border-bottom:1px solid #f0e4c0}
+.tbl-imc td{background:#e8f4fb;color:#1a5276;font-size:12.5px;font-weight:600;text-align:center;padding:8px 6px;line-height:1.4;border-bottom:1px solid #c8e0f0}
+.lbl-retail{background:#ffe99a!important;color:#7a4200!important;font-weight:800!important;font-size:12px!important}
+.lbl-imc{background:#b8d9f0!important;color:#0d3a5c!important;font-weight:800!important;font-size:12px!important}
+
+/* ─── FOOTER ─────────────────────────────── */
+.footer{text-align:center;font-size:11px;color:#aaa;padding:18px 0 10px}
+
+/* ─── KPI GROUPED SECTIONS ──────────────────── */
+.kpi-sections{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.kpi-row{display:flex;gap:10px}
+.kpi-grp{flex:1;border-radius:10px;border:2px solid #dce3ef;overflow:hidden}
+.kpi-grp-hdr{padding:8px 14px;font-size:11px;font-weight:800;letter-spacing:1px;text-align:center;color:#fff}
+.kpi-grp-body{display:grid;gap:8px;padding:10px;background:#f0f4f9}
+.kpi-grp-2{grid-template-columns:repeat(2,1fr)}
+.kpi-grp-3{grid-template-columns:repeat(3,1fr)}
+
+@media(max-width:960px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .kpi-row{flex-direction:column}
+  .kpi-grp{max-width:100%!important}
+  .kpi-grp-3{grid-template-columns:repeat(2,1fr)}
+  .chart-row,.chart-row-3{grid-template-columns:1fr}
+  .input-grid{grid-template-columns:1fr}
+  .m-sliders{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="hdr">
+  <div>
+    <div style="font-size:11px;opacity:.45;letter-spacing:2.5px;margin-bottom:3px">F&F · HONG KONG · CONFIDENTIAL</div>
+    <div class="hdr-title">MLB HK · 26FW MARKETING BUDGET PLAN</div>
+    <div class="hdr-sub">Season: Sep 2026 – Feb 2027 &nbsp;|&nbsp; Budget Status: Pending Approval</div>
+  </div>
+  <div class="hdr-right">
+    <div class="cur-tabs">
+      <button class="cur-tab on" onclick="setCur('HKD',this)">HKD</button>
+      <button class="cur-tab" onclick="setCur('KRW',this)">KRW</button>
+    </div>
+    <div class="logo">MLB<span>·</span>HK</div>
+    <span class="tbc">BUDGET TBC</span>
+    <button class="dl-btn" onclick="downloadExcel()">⬇ Download Excel</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════ SECTION 1: OVERVIEW ══════════════════ -->
+<div class="sec">
+  <div class="sec-title"><span class="sec-num">1</span>MKT Budget Overview</div>
+
+  <div class="input-grid">
+    <!-- Editable Sales Target -->
+    <div class="ibox">
+      <div class="ibox-lbl">26FW Sales Target <span style="color:#e94560">↓ Editable</span></div>
+      <div class="rslider-row" style="flex-wrap:wrap;gap:8px">
+        <span id="curSymLbl" style="font-size:20px;font-weight:700;color:#6b7a99;flex-shrink:0">HKD</span>
+        <input type="number" class="ibox-val" id="salesTarget" value="136089000" oninput="updateAll()" style="flex:1;min-width:150px">
+      </div>
+      <div class="ibox-hint" id="stHint">Default: HKD 136,089,000 · Adjust for scenario planning</div>
+    </div>
+    <!-- Ratio -->
+    <div class="ibox hi">
+      <div class="ibox-lbl">MKT to Sales Ratio (%)</div>
+      <div class="rslider-row">
+        <input type="range" id="ratioSlider" min="1" max="5" step="0.1" value="2.0" oninput="syncR('s')">
+        <input type="number" class="ibox-val red" id="ratioNum" value="2.0" min="0.5" max="10" step="0.1" oninput="syncR('n')" style="width:80px;font-size:24px">
+        <span style="font-size:18px;font-weight:700;color:#e94560">%</span>
+      </div>
+      <div class="ibox-hint">Benchmark: 2.0% &nbsp;·&nbsp; 25FW Actual Ratio: 2.48%</div>
+    </div>
+  </div>
+
+  <!-- KPI CARDS — 3 grouped sections -->
+  <div class="kpi-sections">
+    <div class="kpi-row">
+      <!-- GROUP 1: SALES -->
+      <div class="kpi-grp">
+        <div class="kpi-grp-hdr" style="background:linear-gradient(135deg,#0e6655,#1abc9c)">📈 SALES PERFORMANCE</div>
+        <div class="kpi-grp-body kpi-grp-3">
+          <div class="kpi k-navy"><div class="kl">25FW Sales Achieved <span style="font-size:9px;opacity:.6;letter-spacing:.5px">ACTUAL</span></div><div class="kv" id="k1">HKD 119.3M</div><div class="ks" id="k1s">HKD 119,286,473</div></div>
+          <div class="kpi k-green" style="box-shadow:0 0 0 3px #27ae60,0 0 0 5px #d5f5e3"><div class="kl">26FW Sales Target <span style="background:#fff;color:#1b5e20;font-size:9px;padding:1px 5px;border-radius:3px;font-weight:800">PLAN</span></div><div class="kv" id="k2">HKD 136.1M</div><div class="ks" id="k2s">HKD 136,089,000</div></div>
+          <div class="kpi k-teal"><div class="kl">Sales Growth YoY</div><div class="kv" id="k3">+14.1%</div><div class="ks" id="k3s">+HKD 16.8M vs 25FW</div></div>
+        </div>
+      </div>
+      <!-- GROUP 2: MKT BUDGET -->
+      <div class="kpi-grp">
+        <div class="kpi-grp-hdr" style="background:linear-gradient(135deg,#1a3a6b,#2e86c1)">💰 MKT BUDGET</div>
+        <div class="kpi-grp-body kpi-grp-3">
+          <div class="kpi k-dark"><div class="kl">25FW MKT Actual Spent <span style="font-size:9px;opacity:.6;letter-spacing:.5px">ACTUAL</span></div><div class="kv" id="k4">HKD 2.96M</div><div class="ks" id="k4s">HKD 2,955,633</div></div>
+          <div class="kpi k-purple"><div class="kl">25FW MKT / Sales Ratio <span style="font-size:9px;opacity:.6;letter-spacing:.5px">ACTUAL</span></div><div class="kv">2.48%</div><div class="ks">Actual Reference</div></div>
+          <div class="kpi k-gold" style="box-shadow:0 0 0 3px #27ae60,0 0 0 5px #d5f5e3"><div class="kl">26FW MKT Budget (TBC) <span style="background:#fff;color:#1b5e20;font-size:9px;padding:1px 5px;border-radius:3px;font-weight:800">PLAN</span></div><div class="kv" id="k6">HKD 2.72M</div><div class="ks" id="k6s">at 2.0% ratio</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <!-- GROUP 3: EFFICIENCY -->
+      <div class="kpi-grp" style="max-width:50%">
+        <div class="kpi-grp-hdr" style="background:linear-gradient(135deg,#6c3483,#a93226)">⚡ EFFICIENCY VS PRIOR YEAR</div>
+        <div class="kpi-grp-body kpi-grp-2">
+          <div class="kpi k-blue"><div class="kl">MKT Spend Control</div><div class="kv" id="k7">0.92×</div><div class="ks">26FW Budget ÷ 25FW Actual</div></div>
+          <div class="kpi k-red"><div class="kl">Budget Δ vs 25FW Actual</div><div class="kv" id="k8">−HKD 234K</div><div class="ks" id="k8s">Saving vs 25FW Actual</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIRSIDE SPOTLIGHT -->
+  <div class="airside-box">
+    <h3>🏪 Airside Store Opening — Available Budget &nbsp;<span style="font-size:12px;font-weight:500;color:#a05000">(Event not yet confirmed — subject to management approval)</span></h3>
+    <div class="airside-main">
+      <div class="airside-val">
+        <div class="airside-amt" id="airsideAmt">HKD 41,936</div>
+        <div class="airside-sub" id="airsideSub">at current 2.0% ratio</div>
+        <div style="margin-top:10px;font-size:12px;color:#a05000">Remaining after all fixed &amp; variable items</div>
+      </div>
+      <div class="airside-tbl">
+        <table>
+          <tr><th>MKT / Sales Ratio</th><th id="airsideCurCol">Airside Budget (<span class="cur-sym">HKD</span>)</th><th>vs Current</th></tr>
+          <tbody id="airsideScenario"></tbody>
+        </table>
+        <div class="airside-note">Formula: Airside = Total Budget × <b>14.4%</b> − GWP (150k) − Ticket Seoul (200k) &nbsp;·&nbsp; <b>14.4%</b> = 100% − PM 50.8% − Branding 3.5% − MLB Crew 31.3% &nbsp;(residual after all variable categories)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-row">
+    <div class="chart-box"><div class="ct">Sales &amp; MKT Budget Comparison</div><canvas id="chOverview" height="210"></canvas></div>
+    <div class="chart-box plan26"><div class="ct">26FW Budget Sensitivity by MKT/Sales Ratio</div><canvas id="chSens" height="210"></canvas></div>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 2: CATEGORY BREAKDOWN ══════════════════ -->
+<div class="sec" style="border-top:4px solid #27ae60">
+  <div class="sec-title"><span class="sec-num" style="background:#1b5e20">2</span>MKT Budget Breakdown by Category <span style="background:#1b5e20;color:#fff;font-size:10px;padding:2px 10px;border-radius:12px;font-weight:700;letter-spacing:1px;margin-left:6px">26FW PLAN</span></div>
+
+  <!-- COMPARISON CHARTS — above table -->
+  <div class="chart-row-3" style="margin-bottom:22px">
+    <div class="chart-box"><div class="ct">25FW Actual — Budget Distribution</div><canvas id="chPie25" height="260"></canvas></div>
+    <div class="chart-box plan26"><div class="ct">26FW Plan — Budget Distribution <span style="font-size:11px;color:#1b5e20">(▲▼ vs 25FW)</span></div><canvas id="chPie26" height="260"></canvas></div>
+    <div class="chart-box"><div class="ct">25FW vs 26FW — Category Comparison (<span class="cur-sym">HKD</span> K)</div><canvas id="chCatBar" height="260"></canvas></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="data-tbl" id="tblCat">
+      <thead>
+        <tr>
+          <th class="th-dark left" rowspan="2" style="min-width:220px">LIST</th>
+          <th class="th-dark center" rowspan="2" style="min-width:90px">TYPE</th>
+          <th class="th-25" colspan="3">25FW ACTUAL</th>
+          <th class="th-dark" rowspan="2" style="min-width:150px">REMARKS</th>
+          <th class="th-26" colspan="3" style="letter-spacing:1.5px">✦ 26FW PLAN (TBC)</th>
+        </tr>
+        <tr>
+          <th class="th-25">ACTUAL (<span class="cur-sym">HKD</span>)</th>
+          <th class="th-25">% OF TOTAL</th>
+          <th class="th-25">UTILIZATION %</th>
+          <th class="th-26">BUDGET (<span class="cur-sym">HKD</span>)</th>
+          <th class="th-26">% OF TOTAL</th>
+          <th class="th-26">VS 25FW</th>
+        </tr>
+      </thead>
+      <tbody id="tbCat"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 3: MONTHLY STRATEGY ══════════════════ -->
+<div class="sec" style="border-top:4px solid #27ae60">
+  <div class="sec-title"><span class="sec-num" style="background:#1b5e20">3</span>Monthly Strategy — 26FW (Sep 2026 – Feb 2027) <span style="background:#1b5e20;color:#fff;font-size:10px;padding:2px 10px;border-radius:12px;font-weight:700;letter-spacing:1px;margin-left:6px">26FW PLAN</span></div>
+
+  <div class="m-adj">
+    <h3>Monthly Budget Allocation (%) — Adjust to Reallocate</h3>
+    <div class="m-sliders" id="mSliders"></div>
+    <div class="tchk" id="tchk">Total: 100.0% ✓</div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="data-tbl" id="tblMon">
+      <thead>
+        <tr>
+          <th class="th-dark left" style="min-width:200px">LIST</th>
+          <th class="th-dark" style="min-width:70px">TYPE</th>
+          <th class="th-dark">BUDGET (<span class="cur-sym">HKD</span>)</th>
+          <th class="th-dark">OA %</th>
+          <th class="th-mid" style="min-width:110px">SEPTEMBER<br><span style="font-size:10px;opacity:.7">Sep 2026</span></th>
+          <th class="th-mid" style="min-width:110px">OCTOBER<br><span style="font-size:10px;opacity:.7">Oct 2026</span></th>
+          <th class="th-mid" style="min-width:110px">NOVEMBER<br><span style="font-size:10px;opacity:.7">Nov 2026</span></th>
+          <th class="th-mid" style="min-width:110px">DECEMBER<br><span style="font-size:10px;opacity:.7">Dec 2026</span></th>
+          <th class="th-mid" style="min-width:110px">JANUARY<br><span style="font-size:10px;opacity:.7">Jan 2027</span></th>
+          <th class="th-mid" style="min-width:110px">FEBRUARY<br><span style="font-size:10px;opacity:.7">Feb 2027</span></th>
+        </tr>
+        <tr class="tbl-retail">
+          <td class="left lbl-retail">🏪 Retail Key Consumption Period</td>
+          <td colspan="3" class="lbl-retail"></td>
+          <td>Mid-Autumn Festival<br>25 Sep<br>Airside Store Opening (TBC)</td>
+          <td>Golden Week<br>1–7 Oct</td>
+          <td>Singles Day 11.11<br>Black Friday 27 Nov</td>
+          <td>Christmas<br>End of Year</td>
+          <td>New Year Sales<br>1 Jan 2027</td>
+          <td>Lunar New Year 6 Feb<br>Valentine's Day 14 Feb</td>
+        </tr>
+        <tr class="tbl-imc">
+          <td class="left lbl-imc">🌍 Global MKT Monthly IMC</td>
+          <td colspan="3" class="lbl-imc"></td>
+          <td>Karina Fall Release</td>
+          <td>Karina Edition<br>Vol.3</td>
+          <td>TBD</td>
+          <td>Christmas +<br>End of Year</td>
+          <td>TBD</td>
+          <td>Karina 27SS<br>Release</td>
+        </tr>
+      </thead>
+      <tbody id="tbMon"></tbody>
+    </table>
+  </div>
+
+  <div class="chart-row" style="margin-top:16px">
+    <div class="chart-box" style="grid-column:1/-1"><div class="ct">Monthly Budget Distribution — 26FW (<span class="cur-sym">HKD</span>)</div><canvas id="chMon" height="100"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<div class="footer" id="pgFooter">MLB HK · F&amp;F Corp · 26FW Marketing Budget Planning Tool · Confidential · Internal Review Only</div>
+<script>document.getElementById('pgFooter').textContent+=' · '+new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});</script>
+
+<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<script>
+Chart.register(ChartDataLabels);
+
+// ───────────────────────── CONSTANTS
+const S25 = 119286473, MKT25 = 2955633, KRW_RATE = 185, KRW_RATE_25 = 175;
+
+// 25FW ACTUALS per line item
+const A25 = { SEM:1432472, SEO:90000, ADVERT:15000, BOOST:60000, INFLUENCER:600025, GWP:174600, TICKET:0, AIRSIDE:583536 };
+const CAT25_HKD = [A25.SEM+A25.SEO, A25.ADVERT+A25.BOOST, A25.INFLUENCER, A25.GWP, A25.AIRSIDE]; // fixed 25FW per category
+
+// FIXED 26FW items (do NOT scale with ratio)
+const FIXED = { SEO:90000, GWP:150000, TICKET:200000 };
+
+// Variable % of total budget
+const PCT = { PM:50.8, ADVERT:1.3, BOOST:2.2, INFLUENCER:31.3 };
+// PM subtotal = 50.8% of total; SEM = PM_total − 90k
+// Branding = 3.5% (ADVERT 1.3% + BOOST 2.2%)
+// MLB = 31.3%
+// Offline = (100% - 85.6%) × total - 150k(GWP)
+// Ticket = 200k FIXED; Airside = Offline - 200k
+
+const MONTHS = ['September','October','November','December',"January '27","February '27"];
+
+// Monthly weights per category (rows sum ~100)
+const MW = {
+  SEM:         [22,20,14,17,10,17],
+  SEO:         [17,17,17,16,17,16],
+  ADVERT:      [26,20,12,16, 9,17],
+  BOOST:       [22,20,14,17,10,17],
+  INFLUENCER:  [25,18,15,18,10,14],
+  GWP:         [25,20,15,20, 8,12],
+  TICKET:      [30,30,20,20, 0, 0],
+  AIRSIDE:     [80,10, 5, 5, 0, 0],
+};
+
+let MPCT = [22,20,15,17,10,16]; // monthly % (sum=100)
+let CUR = 'HKD';
+
+// ───────────────────────── HELPERS
+const fc = n => Math.round(n).toLocaleString('en-US');
+const fcD = (n,d=1) => n.toFixed(d);
+const disp = (n,unit='HKD') => {
+  if(unit==='KRW') n *= KRW_RATE;
+  if(Math.abs(n)>=1e9) return unit+' '+(n/1e9).toFixed(2)+'B';
+  if(Math.abs(n)>=1e6) return unit+' '+(n/1e6).toFixed(2)+'M';
+  if(Math.abs(n)>=1e3) return unit+' '+Math.round(n/1e3)+'K';
+  return unit+' '+Math.round(n);
+};
+const cv  = n => CUR==='KRW' ? n*KRW_RATE    : n; // 26FW: 1 HKD = 185 KRW
+const cv25= n => CUR==='KRW' ? n*KRW_RATE_25 : n; // 25FW: 1 HKD = 175 KRW
+const cf  = n => fc(cv(n));
+const disp25 = n => { const v=cv25(n); if(Math.abs(v)>=1e9) return CUR+' '+(v/1e9).toFixed(2)+'B'; if(Math.abs(v)>=1e6) return CUR+' '+(v/1e6).toFixed(2)+'M'; if(Math.abs(v)>=1e3) return CUR+' '+Math.round(v/1e3)+'K'; return CUR+' '+Math.round(v); };
+const fmtN = n => { const abs=Math.abs(n); if(abs>=1e9) return CUR+' '+(n/1e9).toFixed(2)+'B'; if(abs>=1e6) return CUR+' '+(n/1e6).toFixed(2)+'M'; if(abs>=1e3) return CUR+' '+Math.round(n/1e3)+'K'; return CUR+' '+Math.round(n); };
+function getST(){ return parseFloat(document.getElementById('salesTarget').value)||136089000 }
+function getR(){  return parseFloat(document.getElementById('ratioNum').value)||2.0 }
+function getTotal(){ return getST()*getR()/100 }
+
+function calcBdg(total){
+  const pm_tot = total*PCT.PM/100;
+  const pm_sem = pm_tot - FIXED.SEO;
+  const advert  = total*PCT.ADVERT/100;
+  const boost   = total*PCT.BOOST/100;
+  const infl    = total*PCT.INFLUENCER/100;
+  const gwp     = FIXED.GWP;
+  const offline = total - pm_tot - (advert+boost) - infl - gwp;
+  const ticket  = FIXED.TICKET;
+  const airside = Math.max(0, offline - ticket);
+  return { pm_tot, pm_sem, pm_seo:FIXED.SEO, advert, boost, br_tot:advert+boost,
+           infl, gwp, offline_tot:offline, ticket, airside, total };
+}
+
+// weighted monthly split for a given item budget + weight key
+function mSplit(budget, wKey){
+  const w = MW[wKey];
+  const s = w.reduce((a,b)=>a+b,0)||1;
+  return w.map(x => budget*x/s);
+}
+
+// ───────────────────────── CURRENCY TOGGLE
+function setCur(c, el){
+  CUR = c;
+  document.querySelectorAll('.cur-tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.cur-sym').forEach(e=>e.textContent=CUR);
+  document.getElementById('curSymLbl').textContent = CUR;
+  updateAll();
+}
+
+// ───────────────────────── SYNC RATIO
+function syncR(src){
+  const v = src==='s' ? document.getElementById('ratioSlider').value : document.getElementById('ratioNum').value;
+  document.getElementById('ratioSlider').value = v;
+  document.getElementById('ratioNum').value = parseFloat(v).toFixed(1);
+  updateAll();
+}
+
+// ───────────────────────── MASTER UPDATE
+function updateAll(){
+  const r=getR(), st=getST(), total=st*r/100, b=calcBdg(total);
+  const defaultST=136089000;
+  const defDisp=CUR==='KRW'?'KRW '+fc(defaultST*KRW_RATE):'HKD 136,089,000';
+  document.getElementById('stHint').textContent='Default: '+defDisp+' · Adjust for scenario planning';
+  const growth=(st-S25)/S25*100;
+  const sales_delta = CUR==='KRW' ? cv(st)-cv25(S25) : st-S25;
+  const mkt_delta   = CUR==='KRW' ? cv(total)-cv25(MKT25) : total-MKT25;
+  const ctrl = cv(total)/cv25(MKT25);
+
+  // KPIs
+  document.getElementById('k1').textContent  = disp25(S25);
+  document.getElementById('k1s').textContent = CUR+' '+fc(cv25(S25));
+  document.getElementById('k2').textContent  = disp(st,CUR);
+  document.getElementById('k2s').textContent = CUR+' '+fc(cv(st));
+  document.getElementById('k3').textContent  = (growth>=0?'+':'')+fcD(growth)+'%';
+  document.getElementById('k3s').textContent = (sales_delta>=0?'+':'')+fmtN(sales_delta)+' vs 25FW';
+  document.getElementById('k4').textContent  = disp25(MKT25);
+  document.getElementById('k4s').textContent = CUR+' '+fc(cv25(MKT25));
+  document.getElementById('k6').textContent  = disp(total,CUR);
+  document.getElementById('k6s').textContent = 'at '+fcD(r)+'% ratio';
+  document.getElementById('k7').textContent  = fcD(ctrl,2)+'×';
+  document.getElementById('k8').textContent  = (mkt_delta>=0?'+':'')+fmtN(mkt_delta);
+  document.getElementById('k8s').textContent = mkt_delta>=0?'Increase vs 25FW Actual':'Saving vs 25FW Actual';
+
+  // Airside spotlight
+  document.getElementById('airsideAmt').textContent = b.airside>0 ? CUR+' '+fc(cv(b.airside)) : CUR+' 0 — Insufficient';
+  document.getElementById('airsideSub').textContent = 'at current '+fcD(r)+'% ratio';
+  document.getElementById('airsideCurCol').innerHTML = 'Airside Budget (<span class="cur-sym">'+CUR+'</span>)';
+  buildAirsideScenario(r, st);
+
+  buildCatTable(b, total);
+  buildMonTable(b);
+  updateCharts(b, total, r, st);
+}
+
+function buildAirsideScenario(curR, st){
+  const ratios=[1.5,2.0,2.5,3.0,3.5,4.0];
+  const tb=document.getElementById('airsideScenario');
+  tb.innerHTML='';
+  ratios.forEach(rv=>{
+    const tot=st*rv/100, b=calcBdg(tot);
+    const isCur=Math.abs(rv-curR)<0.05;
+    const tr=document.createElement('tr');
+    if(isCur) tr.className='cur-row';
+    const diffAmt=b.airside-(calcBdg(st*curR/100).airside);
+    const diffStr=b.airside>0?((diffAmt>=0?'+':'')+disp(diffAmt,CUR)):'—';
+    tr.innerHTML=`<td>${rv.toFixed(1)}%${isCur?' ◄ Current':''}</td>
+      <td>${b.airside>0?CUR+' '+fc(cv(b.airside)):'N/A'}</td>
+      <td>${isCur?'—':diffStr}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+// ───────────────────────── CATEGORY TABLE
+function buildCatTable(b, total){
+  const mkt25tot = A25.SEM+A25.SEO+A25.ADVERT+A25.BOOST+A25.INFLUENCER+A25.GWP+A25.TICKET+A25.AIRSIDE;
+
+  const rows=[
+    {type:'cat',  name:'PERFORMANCE MARKETING',  act25:A25.SEM+A25.SEO, bud26:b.pm_tot, pct25:(A25.SEM+A25.SEO)/mkt25tot*100},
+    {type:'var',  name:'1. Google SEM, Pmax, Social', act25:A25.SEM, bud26:b.pm_sem, prog25:93, remark:'Lifestyle content aligned with brand DNA; increase paid creative quality'},
+    {type:'fixed',name:'2. Google SEO',           act25:A25.SEO, bud26:b.pm_seo, prog25:48, remark:'Fixed at HKD 90,000 — search ranking maintenance (KARINA, TMS, local currency)'},
+    {type:'sub',  name:'SUBTOTAL',                act25:A25.SEM+A25.SEO, bud26:b.pm_tot},
+
+    {type:'cat',  name:'BRANDING',                act25:A25.ADVERT+A25.BOOST, bud26:b.br_tot, pct25:(A25.ADVERT+A25.BOOST)/mkt25tot*100},
+    {type:'var',  name:'1. Media Advertorial (IG PR)', act25:A25.ADVERT, bud26:b.advert, prog25:133, remark:'Expand PR to lifestyle / fashion media'},
+    {type:'var',  name:'2. IG / FB Boost',        act25:A25.BOOST,  bud26:b.boost,  prog25:100, remark:'Boost key campaign posts and KARINA content'},
+    {type:'sub',  name:'SUBTOTAL',                act25:A25.ADVERT+A25.BOOST, bud26:b.br_tot},
+
+    {type:'cat',  name:'MLB CREW (INFLUENCER)',   act25:A25.INFLUENCER, bud26:b.infl, pct25:A25.INFLUENCER/mkt25tot*100},
+    {type:'var',  name:'1. Influencer Seeding MLB CREW (Product & Cash)', act25:A25.INFLUENCER, bud26:b.infl, prog25:70, remark:'Hip outdoor lifestyle KOLs; field content quality & reach'},
+    {type:'sub',  name:'SUBTOTAL',                act25:A25.INFLUENCER, bud26:b.infl},
+
+    {type:'cat',  name:'GWP',                     act25:A25.GWP, bud26:b.gwp, pct25:A25.GWP/mkt25tot*100},
+    {type:'fixed',name:'1. GWP (Gift with Purchase)', act25:A25.GWP, bud26:b.gwp, prog25:97, remark:'Fixed budget; align with key retail periods'},
+    {type:'sub',  name:'SUBTOTAL',                act25:A25.GWP, bud26:b.gwp},
+
+    {type:'cat',  name:'OFFLINE / ACTIVATION',    act25:A25.AIRSIDE, bud26:b.offline_tot, pct25:A25.AIRSIDE/mkt25tot*100},
+    {type:'fixed',name:'1. Ticket to Seoul',      act25:0, bud26:b.ticket, prog25:null, remark:'Fixed activation budget — new 26FW initiative'},
+    {type:'rem',  name:'2. Airside Store Opening',act25:0, bud26:b.airside, prog25:null, remark:'Remaining budget after all items — subject to confirmation'},
+    {type:'sub',  name:'SUBTOTAL',                act25:A25.AIRSIDE, bud26:b.offline_tot},
+  ];
+
+  const tb=document.getElementById('tbCat'); tb.innerHTML='';
+
+  rows.forEach(row=>{
+    const tr=document.createElement('tr');
+    if(row.type==='cat'){
+      tr.className='row-cat';
+      const pct26=total>0?row.bud26/total*100:0;
+      const vs=row.act25>0?(row.bud26-row.act25)/row.act25*100:null;
+      tr.innerHTML=`<td class="left" colspan="2">${row.name}</td>
+        <td>${fc(cv25(row.act25))}</td>
+        <td>${row.pct25?fcD(row.pct25)+'%':''}</td>
+        <td>—</td><td></td>
+        <td style="color:#1b5e20;font-weight:900;border-left:3px solid #c8e6c9">${fc(cv(row.bud26))}</td>
+        <td style="color:#1b5e20">${fcD(pct26)}%</td>
+        <td>${vs!==null?`<span class="tag ${vs>=0?'up':'dn'}">${vs>=0?'+':''}${fcD(vs,0)}%</span>`:''}</td>`;
+    } else if(row.type==='sub'){
+      tr.className='row-sub';
+      const pct26=total>0?row.bud26/total*100:0;
+      const vs=row.act25>0?(row.bud26-row.act25)/row.act25*100:null;
+      tr.innerHTML=`<td class="left" colspan="2"><b>SUBTOTAL</b></td>
+        <td><b>${fc(cv25(row.act25))}</b></td><td>—</td><td>—</td><td></td>
+        <td style="color:#1b5e20;border-left:3px solid #c8e6c9"><b>${fc(cv(row.bud26))}</b></td>
+        <td style="color:#1b5e20"><b>${fcD(pct26)}%</b></td>
+        <td>${vs!==null?`<span class="tag ${vs>=0?'up':'dn'}">${vs>=0?'+':''}${fcD(vs,0)}%</span>`:''}</td>`;
+    } else {
+      const cls = row.type==='fixed'?'row-fixed':row.type==='rem'?'row-rem':'row-var';
+      tr.className=cls;
+      const badge = row.type==='fixed'?'<span class="badge b-fixed">FIXED</span>':
+                    row.type==='rem'?'<span class="badge b-rem">REMAINING</span>':
+                    '<span class="badge b-var">VAR</span>';
+      const pct26 = total>0?row.bud26/total*100:0;
+      const vs = row.act25>0?(row.bud26-row.act25)/row.act25*100:null;
+      const progStr = row.prog25!=null?`<span class="tag ${row.prog25>110?'dn':row.prog25>=90?'up':'neu'}">${row.prog25}%</span>`:
+                      row.type==='fixed'?'<span class="tag neu">Fixed</span>':'<span class="tag neu">New</span>';
+      const pct25 = row.act25>0?fcD(row.act25/mkt25tot*100)+'%':'—';
+      tr.innerHTML=`<td class="left" style="padding-left:22px">${row.name}${badge}</td>
+        <td class="center" style="font-size:11px;color:#888">${row.type.toUpperCase()}</td>
+        <td>${fc(cv25(row.act25))}</td>
+        <td>${pct25}</td>
+        <td class="center">${progStr}</td>
+        <td class="left" style="font-size:12px;max-width:160px;line-height:1.3">${row.remark||''}</td>
+        <td style="color:#1b5e20;font-weight:800;border-left:3px solid #c8e6c9">${fc(cv(row.bud26))}</td>
+        <td style="color:#1b5e20">${fcD(pct26)}%</td>
+        <td>${vs!==null?`<span class="tag ${vs>=0?'up':'dn'}">${vs>=0?'+':''}${fcD(vs,0)}%</span>`:
+             row.type==='rem'&&b.airside<=0?'<span class="tag dn">N/A</span>':
+             '<span class="tag neu">New</span>'}</td>`;
+    }
+    tb.appendChild(tr);
+  });
+
+  // Grand Total
+  const gtR=document.createElement('tr'); gtR.className='row-grand';
+  const mkt25total_disp=fc(cv25(mkt25tot)), bud26_disp=fc(cv(total));
+  const gvs=(total-mkt25tot)/mkt25tot*100;
+  gtR.innerHTML=`<td class="left" colspan="2">GRAND TOTAL</td>
+    <td>${mkt25total_disp}</td><td>100%</td><td>—</td><td></td>
+    <td class="gv" style="border-left:3px solid #27ae60">${bud26_disp}</td><td>100%</td>
+    <td><span class="tag ${gvs>=0?'up':'dn'}">${gvs>=0?'+':''}${fcD(gvs,1)}%</span></td>`;
+  tb.appendChild(gtR);
+}
+
+// ───────────────────────── MONTH SLIDERS
+function buildMonthSliders(){
+  const c=document.getElementById('mSliders'); c.innerHTML='';
+  MONTHS.forEach((m,i)=>{
+    const d=document.createElement('div'); d.className='m-grp';
+    d.innerHTML=`<label>${i<4?m.substring(0,3):m}</label>
+      <input type="number" id="mp_${i}" value="${MPCT[i]}" min="0" max="100" step="0.5" oninput="onMp(${i},this.value)">
+      <div class="mamt" id="ma_${i}">—</div>`;
+    c.appendChild(d);
+  });
+}
+
+function onMp(i,v){
+  MPCT[i]=parseFloat(v)||0;
+  const t=MPCT.reduce((a,b)=>a+b,0);
+  const el=document.getElementById('tchk');
+  el.textContent='Total: '+t.toFixed(1)+'%'+(Math.abs(t-100)<0.1?' ✓':' ⚠ (must = 100%)');
+  el.className='tchk'+(Math.abs(t-100)<0.1?'':' err');
+  buildMonTable(calcBdg(getTotal()));
+  if(chMon) updateCharts(calcBdg(getTotal()),getTotal(),getR(),getST());
+}
+
+// ───────────────────────── MONTHLY TABLE
+function buildMonTable(b){
+  const total=b.total;
+  MONTHS.forEach((_,i)=>{
+    const el=document.getElementById('ma_'+i);
+    if(el) el.textContent=CUR+' '+fc(cv(total*MPCT[i]/100));
+  });
+
+  const items=[
+    {cls:'row-cat',   name:'PERFORMANCE MARKETING',  type:'',       bud:b.pm_tot,       splits:addSplit(mSplit(b.pm_sem,'SEM'),mSplit(b.pm_seo,'SEO'))},
+    {cls:'row-var',   name:'1. Google SEM, Pmax, Social', type:'VAR',   bud:b.pm_sem,      splits:mSplit(b.pm_sem,'SEM')},
+    {cls:'row-fixed', name:'2. Google SEO',              type:'FIXED', bud:b.pm_seo,      splits:mSplit(b.pm_seo,'SEO')},
+    {cls:'row-sub',   name:'SUBTOTAL',                type:'',       bud:b.pm_tot,       splits:addSplit(mSplit(b.pm_sem,'SEM'),mSplit(b.pm_seo,'SEO'))},
+    {cls:'row-cat',   name:'BRANDING',                type:'',       bud:b.br_tot,       splits:addSplit(mSplit(b.advert,'ADVERT'),mSplit(b.boost,'BOOST'))},
+    {cls:'row-var',   name:'1. Media Advertorial (IG PR)',type:'VAR',bud:b.advert,       splits:mSplit(b.advert,'ADVERT')},
+    {cls:'row-var',   name:'2. IG / FB Boost',        type:'VAR',    bud:b.boost,        splits:mSplit(b.boost,'BOOST')},
+    {cls:'row-sub',   name:'SUBTOTAL',                type:'',       bud:b.br_tot,       splits:addSplit(mSplit(b.advert,'ADVERT'),mSplit(b.boost,'BOOST'))},
+    {cls:'row-cat',   name:'MLB CREW (INFLUENCER)',   type:'',       bud:b.infl,         splits:mSplit(b.infl,'INFLUENCER')},
+    {cls:'row-var',   name:'1. Influencer Seeding MLB CREW',type:'VAR',bud:b.infl,       splits:mSplit(b.infl,'INFLUENCER')},
+    {cls:'row-sub',   name:'SUBTOTAL',                type:'',       bud:b.infl,         splits:mSplit(b.infl,'INFLUENCER')},
+    {cls:'row-cat',   name:'GWP',                     type:'',       bud:b.gwp,          splits:mSplit(b.gwp,'GWP')},
+    {cls:'row-fixed', name:'1. GWP (Gift with Purchase)',type:'FIXED',bud:b.gwp,         splits:mSplit(b.gwp,'GWP')},
+    {cls:'row-sub',   name:'SUBTOTAL',                type:'',       bud:b.gwp,          splits:mSplit(b.gwp,'GWP')},
+    {cls:'row-cat',   name:'OFFLINE / ACTIVATION',    type:'',       bud:b.offline_tot,  splits:addSplit(mSplit(b.ticket,'TICKET'),mSplit(b.airside,'AIRSIDE'))},
+    {cls:'row-fixed', name:'1. Ticket to Seoul',      type:'FIXED',  bud:b.ticket,       splits:mSplit(b.ticket,'TICKET')},
+    {cls:'row-rem',   name:'2. Airside Store Opening',type:'REM',    bud:b.airside,      splits:mSplit(b.airside,'AIRSIDE')},
+    {cls:'row-sub',   name:'SUBTOTAL',                type:'',       bud:b.offline_tot,  splits:addSplit(mSplit(b.ticket,'TICKET'),mSplit(b.airside,'AIRSIDE'))},
+  ];
+
+  const tb=document.getElementById('tbMon'); tb.innerHTML='';
+  const monthTotals=MPCT.map(p=>total*p/100);
+
+  items.forEach(item=>{
+    const tr=document.createElement('tr'); tr.className=item.cls;
+    const isCat=item.cls==='row-cat', isSub=item.cls==='row-sub';
+    const pct=total>0?item.bud/total*100:0;
+    const badge=item.type==='FIXED'?'<span class="badge b-fixed">FIXED</span>':
+                 item.type==='VAR'?'<span class="badge b-var">VAR</span>':
+                 item.type==='REM'?'<span class="badge b-rem">REMAINING</span>':'';
+    let cells=`<td class="left" style="${isCat?'font-weight:800;padding-left:10px':isSub?'font-weight:700':'padding-left:20px'}">${item.name}${badge}</td>
+      <td class="center" style="font-size:11px">${item.type||''}</td>
+      <td>${fc(cv(item.bud))}</td><td>${fcD(pct)}%</td>`;
+    item.splits.forEach(v=>{
+      cells+=`<td>${v>0?fc(cv(v)):v===0&&(item.type==='FIXED'||item.cls==='row-cat'||item.cls==='row-sub')?'—':'—'}</td>`;
+    });
+    tr.innerHTML=cells; tb.appendChild(tr);
+  });
+
+  // Grand Total row
+  const gtr=document.createElement('tr'); gtr.className='row-grand';
+  let gcells=`<td class="left" colspan="2">GRAND TOTAL</td><td class="gv">${fc(cv(total))}</td><td>100%</td>`;
+  monthTotals.forEach((v,i)=>{
+    gcells+=`<td class="gv">${fc(cv(v))}<br><span style="font-size:10px;opacity:.6">${MPCT[i]}%</span></td>`;
+  });
+  gtr.innerHTML=gcells; tb.appendChild(gtr);
+}
+
+function addSplit(a,b){ return a.map((v,i)=>v+(b[i]||0)); }
+
+// ───────────────────────── CHARTS
+let chOv, chSens, chP25, chP26, chCBar, chMon;
+const CAT_LABELS=['Performance Marketing','Branding','MLB Crew','GWP','Offline / Activation'];
+const CAT_COLORS=['#1a5276','#27ae60','#e94560','#f5a623','#9b59b6'];
+const MON_COLORS=['#e94560','#3498db','#2ecc71','#f5a623','#9b59b6','#1abc9c'];
+
+function initCharts(){
+  const b=calcBdg(getTotal()), total=b.total, st=getST(), r=getR();
+
+  const cat26=[b.pm_tot,b.br_tot,b.infl,b.gwp,b.offline_tot];
+  const cat25=[A25.SEM+A25.SEO, A25.ADVERT+A25.BOOST, A25.INFLUENCER, A25.GWP, A25.AIRSIDE];
+  const ratios=[1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0];
+
+  const dlOpts={
+    formatter:(val,ctx)=>{const s=ctx.dataset.data.reduce((a,b)=>a+b,0);const p=(val/s*100);return p>=2?fcD(p,1)+'%':'';},
+    color:'#fff',font:{weight:'700',size:11},
+    textStrokeColor:'rgba(0,0,0,.25)',textStrokeWidth:2
+  };
+  // 26FW pie: show % of 26FW total + Δ in percentage-point contribution vs 25FW
+  const s25hkd_tot=CAT25_HKD.reduce((a,b)=>a+b,0);
+  const dlOpts26={
+    formatter:(val,ctx)=>{
+      const s=ctx.dataset.data.reduce((a,b)=>a+b,0);
+      const p26=val/s*100;
+      if(p26<2) return '';
+      const p25=CAT25_HKD[ctx.dataIndex]/s25hkd_tot*100;
+      const diff=p26-p25;
+      const sign=diff>=0?'+':'-';
+      return fcD(p26,1)+'%\n'+sign+fcD(Math.abs(diff),1)+'%';
+    },
+    color:'#fff',font:{weight:'700',size:10},
+    textStrokeColor:'rgba(0,0,0,.25)',textStrokeWidth:2
+  };
+
+  // 1. Overview bar
+  chOv=new Chart(document.getElementById('chOverview'),{
+    type:'bar',
+    data:{labels:['25FW Actual','26FW Plan'],
+      datasets:[
+        {label:'Sales ('+CUR+' M)',data:[cv25(S25)/1e6,cv(st)/1e6],backgroundColor:['rgba(26,82,118,.8)','rgba(39,174,96,.8)'],yAxisID:'y'},
+        {label:'MKT Budget ('+CUR+' M)',data:[cv25(MKT25)/1e6,cv(total)/1e6],backgroundColor:['rgba(192,57,43,.8)','rgba(233,69,96,.8)'],yAxisID:'y1'}
+      ]},
+    options:{responsive:true,
+      layout:{padding:{top:32}},
+      plugins:{legend:{display:false},
+        datalabels:{
+          labels:{
+            value:{
+              anchor:'center',align:'center',textAlign:'center',
+              font:{size:10,weight:'700'},
+              color:'#fff',
+              formatter:(val,ctx)=>{
+                const name=ctx.datasetIndex===0?'Sales':'MKT Budget';
+                return name+'\n'+val.toFixed(2)+'M';
+              }
+            },
+            pct:{
+              anchor:'end',align:'top',
+              font:{size:10,weight:'700'},
+              padding:{bottom:2},
+              color:(ctx)=>{
+                if(ctx.dataIndex!==1) return 'transparent';
+                const v25=ctx.chart.data.datasets[ctx.datasetIndex].data[0]||1;
+                const p=(ctx.dataset.data[1]-v25)/v25*100;
+                return p>=0?'#1b5e20':'#c0392b';
+              },
+              formatter:(val,ctx)=>{
+                if(ctx.dataIndex!==1) return null;
+                const v25=ctx.chart.data.datasets[ctx.datasetIndex].data[0]||1;
+                const p=(val-v25)/v25*100;
+                return (p>=0?'+':'')+p.toFixed(1)+'%';
+              }
+            }
+          }
+        }},
+      scales:{
+        y:{position:'left',title:{display:true,text:'Sales (M)'}},
+        y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'MKT Budget (M)'},max:Math.ceil(Math.max(cv25(MKT25),cv(total))/1e6*3)}
+      }}
+  });
+
+  // 2. Sensitivity
+  chSens=new Chart(document.getElementById('chSens'),{
+    type:'line',
+    data:{labels:ratios.map(v=>v+'%'),
+      datasets:[
+        {label:'26FW Budget (M)',data:ratios.map(v=>cv(st*v/100)/1e6),borderColor:'#e94560',backgroundColor:'rgba(233,69,96,.1)',fill:true,tension:.4,pointRadius:ratios.map(v=>Math.abs(v-r)<.05?8:4),pointBackgroundColor:ratios.map(v=>Math.abs(v-r)<.05?'#e94560':'#aaa')},
+        {label:'25FW Actual (M)',data:ratios.map(()=>cv25(MKT25)/1e6),borderColor:'#3498db',borderDash:[5,5],pointRadius:0}
+      ]},
+    options:{responsive:true,plugins:{legend:{position:'bottom'},datalabels:{display:false}},
+      scales:{y:{title:{display:true,text:'Budget (M)'}},x:{title:{display:true,text:'MKT/Sales Ratio'}}}}
+  });
+
+  // 3. Pie 25FW
+  chP25=new Chart(document.getElementById('chPie25'),{
+    type:'doughnut',
+    data:{labels:CAT_LABELS,datasets:[{data:cat25.map(v=>cv25(v)),backgroundColor:CAT_COLORS,borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}},datalabels:dlOpts}}
+  });
+
+  // 4. Pie 26FW — uses dlOpts26 which adds % change vs 25FW on second line
+  chP26=new Chart(document.getElementById('chPie26'),{
+    type:'doughnut',
+    data:{labels:CAT_LABELS,datasets:[{data:cat26.map(v=>cv(v)),backgroundColor:CAT_COLORS,borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}},datalabels:dlOpts26}}
+  });
+
+  // 5. Category bar comparison
+  chCBar=new Chart(document.getElementById('chCatBar'),{
+    type:'bar',
+    data:{labels:['Perf. Marketing','Branding','MLB Crew','GWP','Offline/Act.'],
+      datasets:[
+        {label:'25FW Actual',data:cat25.map(v=>cv25(v)/1e3),backgroundColor:'rgba(52,152,219,.75)',borderRadius:4},
+        {label:'26FW Plan',  data:cat26.map(v=>cv(v)/1e3),backgroundColor:'rgba(233,69,96,.75)',  borderRadius:4}
+      ]},
+    options:{responsive:true,
+      layout:{padding:{top:28}},
+      plugins:{
+        legend:{position:'bottom'},
+        datalabels:{
+          labels:{
+            value:{
+              anchor:'center',align:'center',textAlign:'center',
+              font:{size:9,weight:'700'},
+              color:'#fff',
+              formatter:(val)=>Math.round(val)+'K'
+            },
+            pct:{
+              anchor:'end',align:'top',textAlign:'center',
+              font:{size:9,weight:'700'},
+              padding:{bottom:2},
+              color:(ctx)=>{
+                if(ctx.datasetIndex!==1) return 'transparent';
+                const v25=ctx.chart.data.datasets[0].data[ctx.dataIndex]||1;
+                const p=(ctx.dataset.data[ctx.dataIndex]-v25)/v25*100;
+                return p>=0?'#1b5e20':'#c0392b';
+              },
+              formatter:(val,ctx)=>{
+                if(ctx.datasetIndex!==1) return null;
+                const v25=ctx.chart.data.datasets[0].data[ctx.dataIndex]||1;
+                const p=(val-v25)/v25*100;
+                return (p>=0?'+':'-')+Math.abs(p).toFixed(0)+'%';
+              }
+            }
+          }
+        }},
+      scales:{
+        x:{ticks:{maxRotation:25,minRotation:0,font:{size:11}}},
+        y:{title:{display:true,text:CUR+' K'}}
+      }}
+  });
+
+  // 6. Monthly bar
+  chMon=new Chart(document.getElementById('chMon'),{
+    type:'bar',
+    data:{labels:MONTHS.map(m=>m.substring(0,3)),
+      datasets:[{label:'Monthly Budget',data:MPCT.map(p=>cv(total*p/100)),backgroundColor:MON_COLORS,borderRadius:6}]},
+    options:{responsive:true,
+      layout:{padding:{top:30}},
+      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'top',formatter:v=>disp(v,CUR).replace(CUR+' ',''),font:{size:10,weight:'700'},color:'#444',clamp:false}},
+      scales:{y:{title:{display:true,text:CUR}}}}
+  });
+}
+
+function updateCharts(b, total, r, st){
+  if(!chOv) return;
+  const cat26=[b.pm_tot,b.br_tot,b.infl,b.gwp,b.offline_tot];
+  const ratios=[1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0];
+
+  chOv.data.datasets[0].data=[cv25(S25)/1e6,cv(st)/1e6];
+  chOv.data.datasets[1].data=[cv25(MKT25)/1e6,cv(total)/1e6];
+  chOv.data.datasets[0].label='Sales ('+CUR+' M)';
+  chOv.data.datasets[1].label='MKT Budget ('+CUR+' M)';
+  chOv.options.scales.y.title.text='Sales ('+CUR+' M)';
+  chOv.options.scales.y1.title.text='MKT Budget ('+CUR+' M)';
+  chOv.options.scales.y1.max=Math.ceil(Math.max(cv25(MKT25),cv(total))/1e6*3);
+  chOv.update();
+
+  chSens.data.datasets[0].data=ratios.map(v=>cv(st*v/100)/1e6);
+  chSens.data.datasets[0].pointRadius=ratios.map(v=>Math.abs(v-r)<.05?8:4);
+  chSens.data.datasets[0].pointBackgroundColor=ratios.map(v=>Math.abs(v-r)<.05?'#e94560':'#aaa');
+  chSens.data.datasets[1].data=ratios.map(()=>cv25(MKT25)/1e6);
+  chSens.options.scales.y.title.text='Budget ('+CUR+' M)';
+  chSens.update();
+
+  const cat25upd=[A25.SEM+A25.SEO,A25.ADVERT+A25.BOOST,A25.INFLUENCER,A25.GWP,A25.AIRSIDE];
+  chP25.data.datasets[0].data=cat25upd.map(v=>cv25(v));
+  chP25.update();
+  chP26.data.datasets[0].data=cat26.map(v=>cv(v));
+  chP26.update();
+
+  chCBar.data.datasets[0].data=[A25.SEM+A25.SEO,A25.ADVERT+A25.BOOST,A25.INFLUENCER,A25.GWP,A25.AIRSIDE].map(v=>cv25(v)/1e3);
+  chCBar.data.datasets[1].data=cat26.map(v=>cv(v)/1e3);
+  chCBar.options.scales.y.title.text=CUR+' K';
+  chCBar.update();
+
+  chMon.data.datasets[0].data=MPCT.map(p=>cv(total*p/100));
+  chMon.options.scales.y.title.text=CUR;
+  chMon.update();
+}
+
+// ───────────────────────── EXCEL DOWNLOAD
+function downloadExcel(){
+  if(typeof XLSX==='undefined'){alert('Excel library not loaded. Please check internet connection.');return;}
+  const wb=XLSX.utils.book_new();
+  // Always use raw HKD for Excel; KRW sheet multiplies separately
+  const r=getR(), st=getST(), total=st*r/100, b=calcBdg(total);
+  const mkt25tot=A25.SEM+A25.SEO+A25.ADVERT+A25.BOOST+A25.INFLUENCER+A25.GWP+A25.AIRSIDE; // 2,955,633
+
+  // ── STYLE DEFINITIONS ──────────────────────────
+  const S={
+    title:  {font:{bold:true,sz:15,color:{rgb:'FFFFFF'}},fill:{fgColor:{rgb:'0D1B2A'}},alignment:{horizontal:'center',vertical:'center',wrapText:true}},
+    sec:    {font:{bold:true,sz:12,color:{rgb:'FFFFFF'}},fill:{fgColor:{rgb:'1B3565'}},alignment:{horizontal:'left',vertical:'center'}},
+    lbl:    {font:{bold:true,sz:11,color:{rgb:'2C3E50'}},fill:{fgColor:{rgb:'F4F6FB'}},alignment:{horizontal:'left'}},
+    inp:    {font:{bold:true,sz:12,color:{rgb:'B7770D'}},fill:{fgColor:{rgb:'FFF9E6'}},alignment:{horizontal:'right'},numFmt:'#,##0',border:{top:{style:'thin',color:{rgb:'F5A623'}},bottom:{style:'medium',color:{rgb:'F5A623'}},left:{style:'thin',color:{rgb:'F5A623'}},right:{style:'thin',color:{rgb:'F5A623'}}}},
+    inpPct: {font:{bold:true,sz:12,color:{rgb:'C0392B'}},fill:{fgColor:{rgb:'FFF8F8'}},alignment:{horizontal:'right'},numFmt:'0.0',border:{top:{style:'thin',color:{rgb:'E94560'}},bottom:{style:'medium',color:{rgb:'E94560'}},left:{style:'thin',color:{rgb:'E94560'}},right:{style:'thin',color:{rgb:'E94560'}}}},
+    calc:   {font:{italic:true,sz:11,color:{rgb:'1A5276'}},fill:{fgColor:{rgb:'EEF6FF'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    calcPct:{font:{italic:true,sz:11,color:{rgb:'1A5276'}},fill:{fgColor:{rgb:'EEF6FF'}},alignment:{horizontal:'right'},numFmt:'0.00%'},
+    calcX:  {font:{italic:true,sz:11,color:{rgb:'1A5276'}},fill:{fgColor:{rgb:'EEF6FF'}},alignment:{horizontal:'right'},numFmt:'0.00'},
+    cat:    {font:{bold:true,sz:12,color:{rgb:'0D1B2A'}},fill:{fgColor:{rgb:'DCE5F5'}},alignment:{horizontal:'left'}},
+    catN:   {font:{bold:true,sz:12,color:{rgb:'0D1B2A'}},fill:{fgColor:{rgb:'DCE5F5'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    catP:   {font:{bold:true,sz:12,color:{rgb:'0D1B2A'}},fill:{fgColor:{rgb:'DCE5F5'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    fixedL: {font:{sz:11,color:{rgb:'1A3A6B'}},fill:{fgColor:{rgb:'EBF5FF'}},alignment:{horizontal:'left'}},
+    fixedN: {font:{sz:11,color:{rgb:'1A3A6B'}},fill:{fgColor:{rgb:'EBF5FF'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    fixedP: {font:{sz:11,color:{rgb:'1A3A6B'}},fill:{fgColor:{rgb:'EBF5FF'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    varL:   {font:{sz:11,color:{rgb:'1A1A2E'}},fill:{fgColor:{rgb:'FFFFFF'}},alignment:{horizontal:'left'}},
+    varN:   {font:{sz:11,color:{rgb:'1A1A2E'}},fill:{fgColor:{rgb:'FFFFFF'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    varP:   {font:{sz:11,color:{rgb:'1A1A2E'}},fill:{fgColor:{rgb:'FFFFFF'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    remL:   {font:{sz:11,color:{rgb:'7A4000'}},fill:{fgColor:{rgb:'FFF8EE'}},alignment:{horizontal:'left'}},
+    remN:   {font:{sz:11,color:{rgb:'7A4000'}},fill:{fgColor:{rgb:'FFF8EE'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    remP:   {font:{sz:11,color:{rgb:'7A4000'}},fill:{fgColor:{rgb:'FFF8EE'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    subL:   {font:{bold:true,sz:11,color:{rgb:'2C4066'}},fill:{fgColor:{rgb:'F0F4F9'}},alignment:{horizontal:'left'}},
+    subN:   {font:{bold:true,sz:11,color:{rgb:'2C4066'}},fill:{fgColor:{rgb:'F0F4F9'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    subP:   {font:{bold:true,sz:11,color:{rgb:'2C4066'}},fill:{fgColor:{rgb:'F0F4F9'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    gtL:    {font:{bold:true,sz:13,color:{rgb:'F5A623'}},fill:{fgColor:{rgb:'0D1B2A'}},alignment:{horizontal:'left'}},
+    gtN:    {font:{bold:true,sz:13,color:{rgb:'F5A623'}},fill:{fgColor:{rgb:'0D1B2A'}},alignment:{horizontal:'right'},numFmt:'#,##0'},
+    gtP:    {font:{bold:true,sz:13,color:{rgb:'FFFFFF'}},fill:{fgColor:{rgb:'0D1B2A'}},alignment:{horizontal:'right'},numFmt:'0.0%'},
+    retL:   {font:{bold:true,sz:11,color:{rgb:'7A5200'}},fill:{fgColor:{rgb:'FFFBEA'}},alignment:{horizontal:'left'}},
+    retC:   {font:{sz:10,color:{rgb:'7A5200'}},fill:{fgColor:{rgb:'FFFBEA'}},alignment:{horizontal:'center',wrapText:true}},
+    imcL:   {font:{bold:true,sz:11,color:{rgb:'1A5276'}},fill:{fgColor:{rgb:'E8F4FB'}},alignment:{horizontal:'left'}},
+    imcC:   {font:{sz:10,color:{rgb:'1A5276'}},fill:{fgColor:{rgb:'E8F4FB'}},alignment:{horizontal:'center',wrapText:true}},
+    monHdr: {font:{bold:true,sz:12,color:{rgb:'FFFFFF'}},fill:{fgColor:{rgb:'154360'}},alignment:{horizontal:'center',vertical:'center',wrapText:true}},
+    krwHdr: {font:{bold:true,sz:12,color:{rgb:'FFFFFF'}},fill:{fgColor:{rgb:'4A235A'}},alignment:{horizontal:'center',vertical:'center',wrapText:true}},
+  };
+  function sc(ws,addr,style){ if(ws[addr]) ws[addr].s=style; }
+  function scRange(ws,rFrom,rTo,cols,style){ for(let r=rFrom;r<=rTo;r++) cols.forEach(c=>{ const a=XLSX.utils.encode_cell({r,c}); if(ws[a]) ws[a].s=style; }); }
+
+  // ── SHEET 1: OVERVIEW ────────────────────────────
+  // B3 = Sales Target (HKD, editable), B4 = Ratio (editable), B5 = Budget (formula)
+  const ov=[
+    ['MLB HK · 26FW MARKETING BUDGET PLAN','','','',''],                          // r0
+    ['','','','',''],                                                               // r1
+    ['KEY INPUTS  ←  Change the yellow cells below to recalculate everything','','','',''], // r2
+    ['26FW Sales Target (HKD)',                 st,       '','← Adjust for scenario',''],  // r3
+    ['MKT to Sales Ratio (%)',                  r,        '','← Benchmark: 2.0%',   ''],  // r4
+    ['26FW MKT Budget (HKD)',  {t:'n',f:'B4*B5/100'}, '','= B4 × B5 / 100',       ''],  // r5
+    ['','','','',''],                                                               // r6
+    ['KEY METRICS','','','',''],                                                    // r7
+    ['25FW Sales Achieved (HKD)',      S25,    '','',''],                           // r8
+    ['25FW MKT Actual Spent (HKD)',    MKT25,  '','',''],                           // r9
+    ['Sales Growth (%)',   {t:'n',f:'(B4-B9)/B9'},    '','= (26FW Target − 25FW) ÷ 25FW',''], // r10
+    ['MKT Spend Control (×)', {t:'n',f:'B6/B10'},     '','= 26FW Budget ÷ 25FW Actual',''], // r11
+    ['Budget Δ vs 25FW (HKD)', {t:'n',f:'B6-B10'},   '','',''],                   // r12
+    ['25FW MKT/Sales Ratio (%)', {t:'n',f:'B10/B9'}, '','Actual reference',''],   // r13
+    ['','','','',''],                                                               // r14
+    ['AIRSIDE STORE OPENING — AVAILABLE BUDGET','','','',''],                      // r15
+    ['Available Budget (HKD)', {t:'n',f:'MAX(0,B6*0.144-350000)'}, '','= 26FW Budget × 14.4% − GWP (150k) − Ticket Seoul (200k)',''], // r16
+    ['Status','Not yet confirmed — subject to management approval','','',''],      // r17
+    ['','','','',''],                                                               // r18
+    ['AIRSIDE SCENARIO TABLE','','','',''],                                         // r19
+    ['Ratio (%)','26FW Total Budget (HKD)','Airside Available (HKD)','vs 2.0% Budget',''], // r20
+    [1.5, Math.round(st*0.015), Math.max(0,Math.round(st*0.015*0.144)-350000), '', ''], // r21
+    [2.0, Math.round(st*0.020), Math.max(0,Math.round(st*0.020*0.144)-350000), '', ''], // r22
+    [2.5, Math.round(st*0.025), Math.max(0,Math.round(st*0.025*0.144)-350000), '', ''], // r23
+    [3.0, Math.round(st*0.030), Math.max(0,Math.round(st*0.030*0.144)-350000), '', ''], // r24
+    [3.5, Math.round(st*0.035), Math.max(0,Math.round(st*0.035*0.144)-350000), '', ''], // r25
+    [4.0, Math.round(st*0.040), Math.max(0,Math.round(st*0.040*0.144)-350000), '', ''], // r26
+  ];
+  const ovWs=XLSX.utils.aoa_to_sheet(ov);
+  // Merges
+  ovWs['!merges']=[
+    {s:{r:0,c:0},e:{r:0,c:4}},{s:{r:2,c:0},e:{r:2,c:4}},
+    {s:{r:7,c:0},e:{r:7,c:4}},{s:{r:15,c:0},e:{r:15,c:4}},{s:{r:19,c:0},e:{r:19,c:4}}
+  ];
+  ovWs['!cols']=[{wch:38},{wch:22},{wch:10},{wch:40},{wch:8}];
+  ovWs['!rows']=[{hpt:30}];
+  // Styles
+  sc(ovWs,'A1',S.title); sc(ovWs,'A3',S.sec);
+  sc(ovWs,'A4',S.lbl); sc(ovWs,'B4',S.inp);
+  sc(ovWs,'A5',S.lbl); sc(ovWs,'B5',S.inpPct);
+  sc(ovWs,'A6',S.lbl); sc(ovWs,'B6',{...S.calc,font:{bold:true,sz:13,color:{rgb:'0D1B2A'}}});
+  sc(ovWs,'A8',S.sec);
+  sc(ovWs,'A9',S.lbl);  sc(ovWs,'B9', S.calc);
+  sc(ovWs,'A10',S.lbl); sc(ovWs,'B10',S.calc);
+  sc(ovWs,'A11',S.lbl); sc(ovWs,'B11',S.calcPct);
+  sc(ovWs,'A12',S.lbl); sc(ovWs,'B12',S.calcX);
+  sc(ovWs,'A13',S.lbl); sc(ovWs,'B13',S.calc);
+  sc(ovWs,'A14',S.lbl); sc(ovWs,'B14',S.calcPct);
+  sc(ovWs,'A16',{...S.sec,fill:{fgColor:{rgb:'7A4200'}}});
+  sc(ovWs,'A17',S.lbl); sc(ovWs,'B17',{...S.remN,font:{bold:true,sz:13,color:{rgb:'7A4000'}}});
+  sc(ovWs,'A20',S.sec);
+  ['A','B','C','D'].forEach(c=>sc(ovWs,c+'21',S.sec));
+  // Scenario rows: mark current ratio row
+  for(let ri=21;ri<=26;ri++){
+    const rv=ov[ri][0];
+    const isCur=Math.abs(rv-r)<0.05;
+    const bg=isCur?'FFF3CD':'FFFFFF';
+    ['A','B','C','D'].forEach(c=>{
+      const addr=c+(ri+1);
+      if(ovWs[addr]) ovWs[addr].s={font:{bold:isCur,sz:11,color:{rgb:isCur?'7A4200':'222222'}},fill:{fgColor:{rgb:bg}},alignment:{horizontal:'right'},numFmt:c==='A'?'0.0%':'#,##0'};
+      if(ovWs[addr]&&c==='A') ovWs[addr].s={...ovWs[addr].s,alignment:{horizontal:'center'}};
+    });
+  }
+  XLSX.utils.book_append_sheet(wb,ovWs,'Overview');
+
+  // ── SHEET 2: HKD BUDGET ──────────────────────────
+  // Row layout: r0=title, r1=empty, r2=input labels, r3=input values (B3=ST, D3=ratio),
+  //             r4=budget formula (B4=B3*D3/100), r5=empty, r6=col headers, r7-r25=data
+  // Budget cell: $B$5 (row index 4, col 1)  → Excel B5
+  const BTOT='$B$5'; // absolute ref to total budget in this sheet
+  const M25='$C$26'; // absolute ref to 25FW grand total
+  const M26='$E$26'; // absolute ref to 26FW grand total
+
+  const bdg=[
+    // r0
+    ['MLB HK · 26FW MARKETING BUDGET PLAN — HKD BUDGET','','','','','','',''],
+    // r1
+    ['','','','','','','',''],
+    // r2: input row
+    ['26FW Sales Target (HKD)','← Change here','','MKT/Sales Ratio (%)','← Change here','','NOTE: Change B3 or D3 — all budgets below auto-recalculate',''],
+    // r3: input values
+    [st,'',''  ,r,'','','',''],
+    // r4: calculated budget
+    ['26FW MKT Budget (HKD)', {t:'n',f:'A4*D4/100'},'','','','','',''],
+    // r5: empty
+    ['','','','','','','',''],
+    // r6: column headers
+    ['LIST','TYPE','25FW Actual\n(HKD)','25FW\nOA %','26FW Budget\n(HKD)','26FW\nOA %','vs 25FW\nActual %','REMARKS'],
+    // r7: PERFORMANCE MARKETING (cat)
+    ['PERFORMANCE MARKETING','CAT',A25.SEM+A25.SEO,'',{t:'n',f:BTOT+'*0.508'},'','',''],
+    // r8: SEM (variable)
+    ['  1. Google SEM, Pmax, Social','VARIABLE',A25.SEM,{t:'n',f:'C9/'+M25},{t:'n',f:BTOT+'*0.508-90000'},{t:'n',f:'E9/'+M26},{t:'n',f:'(E9-C9)/C9'},'Lifestyle content aligned with brand DNA; increase paid creative quality'],
+    // r9: SEO (fixed)
+    ['  2. Google SEO','FIXED',A25.SEO,{t:'n',f:'C10/'+M25},FIXED.SEO,{t:'n',f:'E10/'+M26},{t:'n',f:'(E10-C10)/C10'},'Fixed at HKD 90,000 — search ranking maintenance'],
+    // r10: PM subtotal
+    ['SUBTOTAL — Performance Marketing','',A25.SEM+A25.SEO,'',{t:'n',f:'E9+E10'},{t:'n',f:'E11/'+M26},{t:'n',f:'(E11-C11)/C11'},''],
+    // r11: BRANDING (cat)
+    ['BRANDING','CAT',A25.ADVERT+A25.BOOST,'',{t:'n',f:BTOT+'*0.035'},'','',''],
+    // r12: Advertorial
+    ['  1. Media Advertorial (IG PR)','VARIABLE',A25.ADVERT,{t:'n',f:'C13/'+M25},{t:'n',f:BTOT+'*0.013'},{t:'n',f:'E13/'+M26},{t:'n',f:'(E13-C13)/C13'},'Expand PR to lifestyle / fashion media'],
+    // r13: Boost
+    ['  2. IG / FB Boost','VARIABLE',A25.BOOST,{t:'n',f:'C14/'+M25},{t:'n',f:BTOT+'*0.022'},{t:'n',f:'E14/'+M26},{t:'n',f:'(E14-C14)/C14'},'Boost key campaign posts and KARINA content'],
+    // r14: Branding subtotal
+    ['SUBTOTAL — Branding','',A25.ADVERT+A25.BOOST,'',{t:'n',f:'E13+E14'},{t:'n',f:'E15/'+M26},{t:'n',f:'(E15-C15)/C15'},''],
+    // r15: MLB CREW (cat)
+    ['MLB CREW (INFLUENCER)','CAT',A25.INFLUENCER,'',{t:'n',f:BTOT+'*0.313'},'','',''],
+    // r16: Influencer
+    ['  1. Influencer Seeding MLB CREW (Product & Cash)','VARIABLE',A25.INFLUENCER,{t:'n',f:'C17/'+M25},{t:'n',f:BTOT+'*0.313'},{t:'n',f:'E17/'+M26},{t:'n',f:'(E17-C17)/C17'},'Hip outdoor lifestyle KOLs; field content quality & reach'],
+    // r17: MLB subtotal
+    ['SUBTOTAL — MLB Crew','',A25.INFLUENCER,'',{t:'n',f:'E17'},{t:'n',f:'E18/'+M26},{t:'n',f:'(E18-C18)/C18'},''],
+    // r18: GWP (cat)
+    ['GWP','CAT',A25.GWP,'',FIXED.GWP,'','',''],
+    // r19: GWP item
+    ['  1. GWP (Gift with Purchase)','FIXED',A25.GWP,{t:'n',f:'C20/'+M25},FIXED.GWP,{t:'n',f:'E20/'+M26},{t:'n',f:'(E20-C20)/C20'},'Fixed at HKD 150,000; align with key retail periods'],
+    // r20: GWP subtotal
+    ['SUBTOTAL — GWP','',A25.GWP,'',FIXED.GWP,{t:'n',f:'E21/'+M26},{t:'n',f:'(E21-C21)/C21'},''],
+    // r21: OFFLINE (cat)
+    ['OFFLINE / ACTIVATION','CAT',A25.AIRSIDE,'',{t:'n',f:'E23+E24'},'','',''],
+    // r22: Ticket Seoul
+    ['  1. Ticket to Seoul','FIXED',0,'',FIXED.TICKET,{t:'n',f:'E23/'+M26},''  ,'Fixed at HKD 200,000 — new 26FW initiative'],
+    // r23: Airside
+    ['  2. Airside Store Opening','REMAINING',0,'',{t:'n',f:'MAX(0,'+BTOT+'*0.144-350000)'},{t:'n',f:'IF(E24>0,E24/'+M26+',0)'},''  ,'Remaining budget — subject to confirmation'],
+    // r24: Offline subtotal
+    ['SUBTOTAL — Offline','',A25.AIRSIDE,'',{t:'n',f:'E23+E24'},{t:'n',f:'E25/'+M26},{t:'n',f:'IF(C25>0,(E25-C25)/C25,"")'},''],
+    // r25: GRAND TOTAL
+    ['GRAND TOTAL','',{t:'n',f:'C11+C15+C18+C21+C25'},'100%',{t:'n',f:'E11+E15+E18+E21+E25'},'100%',{t:'n',f:'(E26-C26)/C26'},''],
+  ];
+  const bdgWs=XLSX.utils.aoa_to_sheet(bdg);
+  bdgWs['!cols']=[{wch:44},{wch:10},{wch:16},{wch:10},{wch:18},{wch:10},{wch:12},{wch:44}];
+  bdgWs['!rows']=[{hpt:24},{},{hpt:18},{hpt:22},{hpt:22},{},{hpt:32}];
+  bdgWs['!merges']=[{s:{r:0,c:0},e:{r:0,c:7}}];
+  // Apply styles
+  sc(bdgWs,'A1',S.title);
+  sc(bdgWs,'A3',S.lbl); sc(bdgWs,'B3',{...S.lbl,font:{bold:false,sz:10,color:{rgb:'999999'}}});
+  sc(bdgWs,'D3',S.lbl); sc(bdgWs,'E3',{...S.lbl,font:{bold:false,sz:10,color:{rgb:'999999'}}});
+  sc(bdgWs,'G3',{...S.lbl,font:{bold:false,sz:9,color:{rgb:'888888'}}});
+  sc(bdgWs,'A4',S.inp); sc(bdgWs,'D4',S.inpPct);
+  sc(bdgWs,'A5',S.lbl); sc(bdgWs,'B5',{...S.calc,font:{bold:true,sz:13,color:{rgb:'0D1B2A'}}});
+  // Column headers row (r6)
+  'ABCDEFGH'.split('').forEach((c,i)=>sc(bdgWs,c+'7',S.sec));
+  // Data rows
+  const rowDefs=[
+    {r:7, style:'cat'},{r:8, style:'var'},{r:9, style:'fixed'},{r:10,style:'sub'},
+    {r:11,style:'cat'},{r:12,style:'var'},{r:13,style:'var'}, {r:14,style:'sub'},
+    {r:15,style:'cat'},{r:16,style:'var'},{r:17,style:'sub'},
+    {r:18,style:'cat'},{r:19,style:'fixed'},{r:20,style:'sub'},
+    {r:21,style:'cat'},{r:22,style:'fixed'},{r:23,style:'rem'},{r:24,style:'sub'},
+    {r:25,style:'gt'}
+  ];
+  rowDefs.forEach(({r,style})=>{
+    const LS=S[style+'L']||S.catL||S.cat, NS=S[style+'N']||S.catN, PS=S[style+'P']||S.catP;
+    const cols=[['A',LS],['B',LS||NS],['C',NS||LS],['D',PS],['E',NS],['F',PS],['G',PS],['H',LS]];
+    cols.forEach(([c,st2])=>sc(bdgWs,c+(r+1),st2));
+    if(style==='gt'){['A','B','C','D','E','F','G','H'].forEach(c=>sc(bdgWs,c+(r+1),c==='A'||c==='B'||c==='H'?S.gtL:c==='D'||c==='F'?S.gtP:S.gtN));}
+  });
+  XLSX.utils.book_append_sheet(wb,bdgWs,'HKD Budget');
+
+  // ── SHEET 3: MONTHLY STRATEGY (HKD) ─────────────
+  const monItems=[
+    {name:'PERFORMANCE MARKETING',            cat:true},
+    {name:'  1. Google SEM, Pmax, Social',    bud:b.pm_sem,  type:'VARIABLE'},
+    {name:'  2. Google SEO',                  bud:b.pm_seo,  type:'FIXED'},
+    {name:'  SUBTOTAL — Perf. Marketing',     bud:b.pm_tot,  sub:true},
+    {name:'BRANDING',                         cat:true},
+    {name:'  1. Media Advertorial (IG PR)',   bud:b.advert,  type:'VARIABLE'},
+    {name:'  2. IG / FB Boost',               bud:b.boost,   type:'VARIABLE'},
+    {name:'  SUBTOTAL — Branding',            bud:b.br_tot,  sub:true},
+    {name:'MLB CREW (INFLUENCER)',            cat:true},
+    {name:'  1. Influencer Seeding MLB CREW', bud:b.infl,    type:'VARIABLE'},
+    {name:'  SUBTOTAL — MLB Crew',            bud:b.infl,    sub:true},
+    {name:'GWP',                              cat:true},
+    {name:'  1. GWP (Gift with Purchase)',    bud:b.gwp,     type:'FIXED'},
+    {name:'  SUBTOTAL — GWP',                bud:b.gwp,     sub:true},
+    {name:'OFFLINE / ACTIVATION',            cat:true},
+    {name:'  1. Ticket to Seoul',            bud:b.ticket,  type:'FIXED'},
+    {name:'  2. Airside Store Opening',      bud:b.airside, type:'REMAINING'},
+    {name:'  SUBTOTAL — Offline',            bud:b.offline_tot, sub:true},
+    {name:'GRAND TOTAL',                     bud:total,     grand:true},
+  ];
+  const monRows=[
+    ['MLB HK · 26FW MARKETING BUDGET PLAN — MONTHLY STRATEGY (HKD)','','','','','','','','',''],
+    ['26FW MKT Budget (HKD)', total, '', 'MKT/Sales Ratio:', r+'%', '', 'Monthly % controlled by sliders in dashboard','','',''],
+    [''],
+    ['RETAIL KEY CONSUMPTION PERIOD','','',
+     'Mid-Autumn Festival 25 Sep\nAirside Store Opening (TBC)',
+     'Golden Week\n1–7 Oct',
+     'Singles Day 11.11\nBlack Friday 27 Nov',
+     'Christmas &\nEnd of Year',
+     'New Year Sales\n1 Jan 2027',
+     'Lunar New Year 6 Feb\nValentine\'s Day 14 Feb',''],
+    ['GLOBAL MKT MONTHLY IMC','','',
+     'Karina Fall Release',
+     'Karina Edition\nVol.3','TBD',
+     'Christmas +\nEnd of Year','TBD',
+     'Karina 27SS\nRelease',''],
+    [''],
+    ['LIST','TYPE','ANNUAL BUDGET (HKD)',...MONTHS,'TOTAL CHECK'],
+    ...monItems.map(it=>{
+      if(it.cat)  return [it.name,'CAT','',...MONTHS.map(()=>''),''];
+      const mAmts=MPCT.map(p=>Math.round(it.bud*p/100));
+      const rowTotal=mAmts.reduce((a,b)=>a+b,0);
+      if(it.grand) return [it.name,'',Math.round(it.bud),...mAmts,rowTotal];
+      return [it.name, it.sub?'':it.type, Math.round(it.bud), ...mAmts, rowTotal];
+    }),
+    ['Monthly %','','100%',...MPCT.map(p=>p+'%'),''],
+    ['Monthly Budget (HKD)','',Math.round(total),...MPCT.map(p=>Math.round(total*p/100)),Math.round(total)],
+  ];
+  const monWs=XLSX.utils.aoa_to_sheet(monRows);
+  monWs['!cols']=[{wch:40},{wch:10},{wch:18},...MONTHS.map(()=>({wch:16})),{wch:14}];
+  monWs['!rows']=[{hpt:24},{hpt:18},{},{hpt:44},{hpt:44},{},{hpt:32}];
+  monWs['!merges']=[{s:{r:0,c:0},e:{r:0,c:9}}];
+  sc(monWs,'A1',S.title);
+  sc(monWs,'A2',S.lbl); sc(monWs,'B2',S.calc);
+  ['A','B','C','D','E','F','G','H','I'].forEach(c=>{ sc(monWs,c+'4',S.retC); sc(monWs,c+'5',S.imcC); });
+  sc(monWs,'A4',S.retL); sc(monWs,'A5',S.imcL);
+  'ABCDEFGHIJ'.split('').forEach(c=>sc(monWs,c+'7',S.monHdr));
+  XLSX.utils.book_append_sheet(wb,monWs,'Monthly Strategy');
+
+  // ── SHEET 4: KRW BUDGET ──────────────────────────
+  // All values: HKD × KRW_RATE. Always uses KRW regardless of dashboard toggle.
+  const K=KRW_RATE;
+  const krwRows=[
+    ['MLB HK · 26FW MARKETING BUDGET PLAN — KRW BUDGET','','','','','','','','',''],
+    ['26FW Rate: 1 HKD = '+K+' KRW  |  25FW Reference Rate: 1 HKD = 175 KRW  |  26FW MKT Budget: ₩'+fc(Math.round(total*K)),'','','MKT/Sales Ratio:', r+'%','','','','',''],
+    [''],
+    ['RETAIL KEY CONSUMPTION PERIOD','','',
+     'Mid-Autumn Festival 25 Sep\nAirside Store Opening (TBC)',
+     'Golden Week\n1–7 Oct',
+     'Singles Day 11.11\nBlack Friday 27 Nov',
+     'Christmas &\nEnd of Year',
+     'New Year Sales\n1 Jan 2027',
+     'Lunar New Year 6 Feb\nValentine\'s Day 14 Feb',''],
+    ['GLOBAL MKT MONTHLY IMC','','',
+     'Karina Fall Release',
+     'Karina Edition\nVol.3','TBD',
+     'Christmas +\nEnd of Year','TBD',
+     'Karina 27SS\nRelease',''],
+    [''],
+    ['LIST','TYPE','ANNUAL BUDGET (KRW)',...MONTHS,'TOTAL CHECK'],
+    ...monItems.map(it=>{
+      if(it.cat)  return [it.name,'CAT','',...MONTHS.map(()=>''),''];
+      const mAmts=MPCT.map(p=>Math.round(it.bud*K*p/100));
+      const rowTotal=mAmts.reduce((a,b)=>a+b,0);
+      if(it.grand) return [it.name,'',Math.round(it.bud*K),...mAmts,rowTotal];
+      return [it.name, it.sub?'':it.type, Math.round(it.bud*K), ...mAmts, rowTotal];
+    }),
+    ['Monthly %','','100%',...MPCT.map(p=>p+'%'),''],
+    ['Monthly Budget (KRW)','',Math.round(total*K),...MPCT.map(p=>Math.round(total*K*p/100)),Math.round(total*K)],
+  ];
+  const krwWs=XLSX.utils.aoa_to_sheet(krwRows);
+  krwWs['!cols']=[{wch:40},{wch:10},{wch:22},...MONTHS.map(()=>({wch:18})),{wch:16}];
+  krwWs['!rows']=[{hpt:24},{hpt:18},{},{hpt:44},{hpt:44},{},{hpt:32}];
+  krwWs['!merges']=[{s:{r:0,c:0},e:{r:0,c:9}}];
+  sc(krwWs,'A1',{...S.title,fill:{fgColor:{rgb:'4A235A'}}});
+  sc(krwWs,'A2',S.lbl);
+  ['A','B','C','D','E','F','G','H','I'].forEach(c=>{ sc(krwWs,c+'4',S.retC); sc(krwWs,c+'5',S.imcC); });
+  sc(krwWs,'A4',S.retL); sc(krwWs,'A5',S.imcL);
+  'ABCDEFGHIJ'.split('').forEach(c=>sc(krwWs,c+'7',S.krwHdr));
+  XLSX.utils.book_append_sheet(wb,krwWs,'KRW Budget');
+
+  XLSX.writeFile(wb,'MLB_HK_26FW_Marketing_Budget.xlsx');
+}
+
+// ───────────────────────── INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  buildMonthSliders();
+  updateAll();
+  initCharts();
+});
+</script>
+</body>
+</html>
